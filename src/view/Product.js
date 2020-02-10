@@ -9,11 +9,10 @@ const CURRENCY = '$';
 
 const Product = ({ productObj, showQuantity, buttonTitle, buttonAction, className }) => {
   
-  let [quantity, setQuantity] = useState("1");
-  const { productName, price, productImage } = productObj;
+  let [addQuantity, setAddQuantity] = useState("1");
+  const { productName, price, productImage,quantity=addQuantity } = productObj;
 
-  const {setTheTotle}=useStore();
-  
+ 
  
 
   return (
@@ -37,7 +36,7 @@ const Product = ({ productObj, showQuantity, buttonTitle, buttonAction, classNam
           </Details>
           <InputWrap>
             {showQuantity &&
-              <select onChange={(e) => setQuantity(e.target.value)} >
+              <select onChange={(e) => setAddQuantity(e.target.value)} >
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

@@ -5,14 +5,14 @@ import { useStore } from '../state/Products.store';
 
 
 
-const ProductList = ({ products, showQuantity, buttonTitle, buttonAction, className, title }) => {
+const ProductList = ({ products, showQuantity, buttonTitle, buttonAction, className, title,cartTotle }) => {
 
-  const {totle}=useStore();
+  
  
   return (
     <div>
       <h2>{title}{!showQuantity &&
-        <Totle>{`The totle cost is ${totle}`}</Totle>}</h2>
+        <Totle>{`The totle cost is ${cartTotle}`}</Totle>}</h2>
       <List>
         {products &&
           products.map((product, indx) => {

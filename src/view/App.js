@@ -8,9 +8,8 @@ import { useStore } from '../state/Products.store';
 
 const App = () => {
 
-const {storeProducts,buyTheProduct,cart,removeTheProduct}=useStore();
-  // console.log(storeProducts)
-
+  const { storeProducts, buyTheProduct, theCart, removeTheProduct, cartTotle } = useStore();
+ 
   return (
     <Page>
 
@@ -23,20 +22,22 @@ const {storeProducts,buyTheProduct,cart,removeTheProduct}=useStore();
       <Content>
         <StoreList>
           <ProductList products={storeProducts}
-          className='store'
-           showQuantity={true}
-           buttonTitle={`add to the cart`} 
-          buttonAction={buyTheProduct}></ProductList>
+            className='store'
+            showQuantity={true}
+            buttonTitle={`add to the cart`}
+            buttonAction={buyTheProduct}></ProductList>
         </StoreList>
         <CartList>
           <ProductList
-          title={`My Cart`}
-          products={cart}
-           showQuantity={false}
-           buttonTitle={`Remove`} 
-           className='cart'
-          buttonAction={removeTheProduct}> 
-           </ProductList>
+            title={`My Cart`}
+            products={theCart}
+            showQuantity={false}
+            buttonTitle={`Remove`}
+            className='cart'
+            cartTotle={cartTotle}
+            buttonAction={removeTheProduct}>
+
+          </ProductList>
         </CartList>
       </Content>
 
@@ -78,8 +79,8 @@ const CartList = styled.div`
     width: 40%;
     background-color: #ffffff;
        `;
-// const ListBox = styled.div`
-//     width: 40%;
-//     background: ${ LIGHT_GREY};
-//    display:flex
-//    `;
+/* const ListBox = styled.div`
+   width: 40%;
+   background: ${ LIGHT_GREY};
+   display:flex
+  `; */

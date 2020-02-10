@@ -14,43 +14,43 @@ const useStore = () => {
 
 const StoreProvider = ({ children }) => {
 
-  let [cart, setCart] = useState([]);
+  let [theCart, setTheCart] = useState([]);
   let [storeProducts, setStoreProducts] = useState([]);
-  let [totle, setTotle] = useState(0);
+  let [cartTotle, setCartTotle] = useState(0);
 
   useEffect(() => {
-    
-    setCart(createStorage()) 
+    console.log("createStorage",createStorage())
+    let [cart,totle]=createStorage();
+    setTheCart(cart);
+    setCartTotle(totle)
     setProduct().then((res) => {
       setStoreProducts(res)
     })
   }, []);
 
   const buyTheProduct= (productObj,quantity)=>{
-    let cart=buyProduct(productObj,quantity)
-    setCart(cart) 
+    const [cart,totle]=buyProduct(productObj,quantity)
+    setTheCart(cart) ;
+    setCartTotle(totle);
      }
  
-     const removeTheProduct= (productObj)=>{
-    let cart=removeProduct(productObj)
-    setCart(cart) 
+     const removeTheProduct= (productObj, quantity)=>{
+      const [cart,totle]=removeProduct(productObj, quantity)
+      setCartTotle(totle);
+      console.log('tot',totle)
+    setTheCart(cart) 
       }
 
-      
-  const setTheTotle = (cost) => {
-    totle = totle + cost;
-    setTotle(totle)
-    console.log(totle)
-  }
+   
 
 
   // state = values to display
   const state = {
-    storeProducts,cart,totle
+    storeProducts,theCart,cartTotle
   };
   // actions = callbacks to invoke
   const actions = {
-    buyTheProduct ,setCart,removeTheProduct,setTheTotle
+    buyTheProduct ,setTheCart,removeTheProduct,setCartTotle
   };
 
   return <Provider value={{ ...state, ...actions }}>{children}</Provider>;
